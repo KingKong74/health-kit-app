@@ -39,11 +39,12 @@ function parseHealthData(raw) {
   const heart = parseEntries(raw.heart['timestamps '], raw.heart.values);
   const steps = parseEntries(raw.steps['timestamps '], raw.steps.values);
   const walkingSpeed = parseEntries(raw.walkingSpeed['timestamps '], raw.walkingSpeed.values);
+  const walkingAsymmetry = parseEntries(raw.walkingAsymmetry['timestamps '], raw.walkingAsymmetry.values);
 
   const parsedDate = new Date(cleanDateString(raw.date.trim()));
   const date = isNaN(parsedDate.getTime()) ? null : parsedDate.toISOString();
 
-  return { date, heart, steps, walkingSpeed };
+  return { date, heart, steps, walkingSpeed, walkingAsymmetry };
 }
 
 
