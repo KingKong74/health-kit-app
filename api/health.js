@@ -38,7 +38,8 @@ function parseHealthData(raw) {
 
   const heart = parseEntries(raw.heart['timestamps '], raw.heart.values);
   const steps = parseEntries(raw.steps['timestamps '], raw.steps.values);
-  const walkingSpeed = parseEntries(raw["walking speed"]["timestamps "], raw["walking speed"].values);
+  const walkingSpeed = parseEntries(raw.walkingSpeed["timestamps "], raw.walkingSpeed.values);
+  
 
 
   const parsedDate = new Date(cleanDateString(raw.date.trim()));
