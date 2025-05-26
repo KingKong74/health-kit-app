@@ -47,7 +47,6 @@ function parseHealthData(raw) {
   const parsedDate = new Date(cleanDateString(raw.date.trim()));
   const date = isNaN(parsedDate.getTime()) ? null : parsedDate.toISOString();
 
-  return { date, heart, steps, walkingSpeed, walkingAsymmetry };
   return { date, heart, steps, walkingSpeed, walkingAsymmetry, walkingSteadiness, walkingDoubleSupport, walkingStepLength };
 }
 
