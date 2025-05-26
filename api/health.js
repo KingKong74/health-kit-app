@@ -36,9 +36,9 @@ function parseHealthData(raw) {
     return timestamps.map((t, i) => (t ? { timestamp: t, value: values[i] } : null)).filter(Boolean);
   };
 
-  const heart = parseEntries(raw.heart['timestamps '], raw.heart.values);
-  const steps = parseEntries(raw.steps['timestamps '], raw.steps.values);
-  const walkingSpeed = parseEntries(raw.walkingSpeed["timestamps "], raw.walkingSpeed.values);
+  const heart = parseEntries(raw.heart.timestamps, raw.heart.values);
+  const steps = parseEntries(raw.steps.timestamps, raw.steps.values);
+  const walkingSpeed = parseEntries(raw.walkingSpeed.timestamps, raw.walkingSpeed.values);
   
 
 
