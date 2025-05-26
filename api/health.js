@@ -1,3 +1,5 @@
+// POST 's data to API and to DB 
+
 const admin = require('firebase-admin');
 
 if (!admin.apps.length) {
