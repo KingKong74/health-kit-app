@@ -38,11 +38,13 @@ function parseHealthData(raw) {
 
   const heart = parseEntries(raw.heart['timestamps '], raw.heart.values);
   const steps = parseEntries(raw.steps['timestamps '], raw.steps.values);
+  const walkingSpeed = parseEntries(raw["walking speed"]["timestamps "], raw["walking speed"].values);
+
 
   const parsedDate = new Date(cleanDateString(raw.date.trim()));
   const date = isNaN(parsedDate.getTime()) ? null : parsedDate.toISOString();
 
-  return { date, heart, steps };
+  return { date, heart, steps, walkingSpeed };
 }
 
 
