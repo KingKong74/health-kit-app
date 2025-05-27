@@ -44,10 +44,12 @@ function parseHealthData(raw) {
   const walkingDoubleSupport = parseEntries(raw.walkingDoubleSupport['timestamps '], raw.walkingDoubleSupport.values);
   const walkingStepLength = parseEntries(raw.walkingStepLength['timestamps '], raw.walkingStepLength.values);
 
+  const sleep = parseEntries(raw.sleep['timestamps '], raw.sleep.values);
+
   const parsedDate = new Date(cleanDateString(raw.date.trim()));
   const date = isNaN(parsedDate.getTime()) ? null : parsedDate.toISOString();
 
-  return { date, heart, steps, walkingSpeed, walkingAsymmetry, walkingSteadiness, walkingDoubleSupport, walkingStepLength };
+  return { date, heart, steps, walkingSpeed, walkingAsymmetry, walkingSteadiness, walkingDoubleSupport, walkingStepLength, sleep };
   // return { date, heart, steps };
 }
 
