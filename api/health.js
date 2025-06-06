@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-const crypto = require('crypto'); // Node.js built-in module for encryption
+const { encrypt } = require('./cryptoUtils'); 
 
 // --- Firebase setup ---
 if (!admin.apps.length) {
@@ -11,20 +11,6 @@ if (!admin.apps.length) {
 }
 
 const db = admin.firestore();
-
-// --- Encryption setup ---
-const algorithm = 'aes-256-cbc'; // Symmetric encryption algorithm
-const key = Buffer.from(process.env.ENCRYPTION_KEY, 'hex'); // 256-bit (32-byte) key, stored as hex in Vercel env vars
-const ivLength = 16; // AES block size for CBC mode
-
-// Function to encrypt data
-function encrypt(text) {
-  const iv = crypto.randomBytes(ivLength); // Random 16-byte IV
-  const cipher = crypto.createCipheriv(algorithm, key, iv); // Create AES cipher using key + IV
-  let encrypted = cipher.update(JSON.stringify(text), 'utf8', 'hex'); // Encrypt the JSON string
-  encrypted += cipher.final('hex'); // Finalise encryption and append any remaining data
-  return iv.toString('hex') + ':' + encrypted; // Store IV + encrypted data together for later decryption
-}
 
 // --- Data cleaning and parsing ---
 function cleanDateString(str) {
