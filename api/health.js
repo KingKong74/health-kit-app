@@ -61,9 +61,10 @@ module.exports = async function handler(req, res) {
 
   // Get user-id from headers (case-insensitive)
   const userId = req.headers['user-id'];
-
-  console.log('Received raw health data:', req.body);
+  
   console.log('Received user-id:', userId);
+  console.log('Received raw health data:', req.body);
+
 
   try {
     const cleanedData = parseHealthData(req.body);
