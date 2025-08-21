@@ -59,21 +59,27 @@ module.exports = async function handler(req, res) {
     return res.status(405).send('Method Not Allowed');
   }
 
+  // Get user-id from headers (case-insensitive)
+  const userId = req.headers['user-id'];
+
   console.log('Received raw health data:', req.body);
+  console.log('Received user-id:', userId);
 
   try {
     const cleanedData = parseHealthData(req.body);
     console.log('Cleaned health data:', cleanedData);
 
-    // Save to Firestore
-    await db.collection('healthData').add(cleanedData);
+    // Save to Firestore, including userId
+    await db.collection('healthData').add({
+      userId,
+      ...cleanedData,
+    });
 
-    res.status(200).json({ success: true, data: cleanedData });
+    res.status(200).json({ success: true, data: cleanedData, userId });
   } catch (err) {
     console.error('Error processing health data:', err);
     res.status(500).json({ success: false, error: 'Failed to process health data' });
   }
-  
 };
 
 
